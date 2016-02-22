@@ -7,5 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Cassandra Cruz <celkamada@gmail.com> (http://lambdatastic.github.io)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^6.0.0",
+    "knex": "^0.10.0",
+    "ramda": "^0.19.1",
+    "sqlite3": "^3.1.1"
+  }
 }
