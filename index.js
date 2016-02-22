@@ -2,6 +2,9 @@
 var Discord = require("discord.js");
 var R = require("ramda");
 
+// import commands
+var commandList = require("./commands/index.js");
+
 // initialize Knex and set up the sqlite connection
 var knex = require('knex')({
   client: 'sqlite3',
