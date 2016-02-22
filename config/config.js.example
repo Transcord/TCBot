@@ -1,0 +1,8 @@
+// copy this file to config/config.js after filling it out
+
+module.exports = {
+  user: {
+    email: "PLACE YOUR BOT EMAIL HERE",
+    password: "PLACE YOUR BOT PASSWORD HERE"
+  }
+}
