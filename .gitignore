@@ -1,2 +1,8 @@
 # ignore npm dependencies
 node_modules
+
+# ignore sqlite data file
+data.sqlite
+
+# ignore filled in config file
+config/config.js
