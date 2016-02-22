@@ -1,0 +1,11 @@
+{
+  "name": "transcordbot",
+  "version": "1.0.0",
+  "description": "A bot to perform common admin duties on Transcord, with a few extras thrown in",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cassandra Cruz <celkamada@gmail.com> (http://lambdatastic.github.io)",
+  "license": "ISC"
+}
