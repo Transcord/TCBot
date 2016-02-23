@@ -2,7 +2,7 @@
 
 module.exports = {
   user: {
-    email: "mycutetranscordbot@yandex.com",
-    password: "imacutelittlerobot"
+    email: "email here,
+    password: "password here"
   }
 }
