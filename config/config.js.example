@@ -4,6 +4,5 @@ module.exports = {
   user: {
     email: "PLACE YOUR BOT EMAIL HERE",
     password: "PLACE YOUR BOT PASSWORD HERE"
-  },
-  modChannelName: "PLACE MOD CHANNEL NAME FOR MESSAGES HERE FOR MODCALL"
+  }
 }
