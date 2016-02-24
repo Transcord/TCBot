@@ -5,15 +5,6 @@ var R = require("ramda");
 // import commands
 var commandList = require("./commands/index.js");
 
-// initialize Knex and set up the sqlite connection
-var knex = require('knex')({
-  client: 'sqlite3',
-  // debug: true,
-  connection: {
-    filename: "./data.sqlite"
-  }
-});
-
 // load config object
 var config = require("./config/config.js");
 
