@@ -1,12 +1,12 @@
 // avatar command
 
 var avatar = function(message) {  
-	try{
-		message.client.reply(message, message.mentions[0].avatarURL);
-	}		
-	catch(err){
+	var mention = message.mentions[0];
+	if(mention == undefined){
 		message.client.reply(message, "Please enter a valid username.");
-	}	
+	}else{
+		message.client.reply(message, mention.avatarURL);
+	}
 };
 
 module.exports = avatar;
