@@ -15,17 +15,24 @@ var servers = require("./config/server.js");
 var bot = new Discord.Client()
 
 // server welcome message
-var welcomeMessage = "Welcome to Transcord!\n\n" +
+var welcomeMessage = function(user){
+  return "Welcome " + user.name + " to Transcord!\n\n" +
   "To get started, please use the !register command with the following options:\n" +
-  "Genders (Only one, is required): male, female, nonbinary, genderfluid, questioning\n" +
-  "Pronouns: he, she they, xe\n" +
+  "Genders (At least 1 is required): male, female, nonbinary, genderfluid, questioning\n" +
+  "Pronouns: he, she, they, xe\n" +
   "Sexuality: straight, gay, lesbian, bi, pan, demi, ace, poly\n" +
-  "Extras (only one): mtf, ftm\n\n" +
+  "Extras (Only 1; gives access to private room): mtf, ftm\n\n" +
   "Examples:\n" +
   "!register male\n" +
   "!register nonbinary they xe\n" +
   "!register female pan poly mtf\n\n" +
   "For any issues or tags not mentioned here, please user the !modcall command in #entry\n";
+};
+
+//channel message to send to entry channel on new user
+var entryChannelMessage = function(user) {
+  return "Welcome " + user.mention() + " to Transcord! Please check your private messages for how to register.";
+};
 
 var messageHandler = function(commands) {
   return function(message) {
@@ -40,7 +47,9 @@ bot.on("message", messageHandler(commandList));
 
 bot.on("serverNewMember", function(server, user) {
   if (server.id === servers.generalId) {
-    bot.sendMessage(user, welcomeMessage);
+    var entryChannel = server.channels.get("name", config.entryChannel);
+    bot.sendMessage(entryChannel, entryChannelMessage(user)); 
+    bot.sendMessage(user, welcomeMessage(user));
   }
 });
 
