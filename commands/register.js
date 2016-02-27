@@ -23,7 +23,7 @@ var normalizeToID = R.compose(
 var register = function(message) {
   // message.client.sendMessage(message.channel, "I'm a bot! I'm working!");
   
-  if (message.client.memberHasRole(message.author, roles["member"])) {
+  if (message.client.memberHasRole(message.author, roles["Member"])) {
     message.client.sendMessage(message.channel,
       "Please ask a mod reset your tags first."
     );
