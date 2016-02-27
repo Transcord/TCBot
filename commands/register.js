@@ -23,52 +23,58 @@ var normalizeToID = R.compose(
 var register = function(message) {
   // message.client.sendMessage(message.channel, "I'm a bot! I'm working!");
   
-  var userRoles = [roles["Member"]];
-  var error = false;
-
-  var userGender = R.match(gender, message.content);
-  if (userGender.length === 0) {
-    error = true;
-    message.client.sendMessage(message.channel, "Must include one gender indentifier.");
-  } else if (userGender.length > 1) {
-    error = true;
-    message.client.sendMessage(message.channel, "Cannot have more than one gender identifier.");
+  if (message.client.memberHasRole(message.author, roles["member"]) {
+    message.client.sendMessage(message.channel,
+      "Please ask a mod reset your tags first."
+    );
   } else {
-    // add gender role to roles list
-    userRoles.push(R.compose(
-      normalizeToID,
-      R.prop(0)
-    )(userGender));
-  }
-
-  var userGenRoles = R.match(genRoles, message.content);
-
-  userRoles = userRoles.concat(R.map(normalizeToID, userGenRoles));
-
-  var userTransStatus = R.match(transStatus, message.content);
-  if (userTransStatus.length > 1) {
-    error = true;
-    message.client.sendMessage(message.channel, "Can only have one transition identifier");
-  } else if (userTransStatus.length > 0) {
-    userRoles.push(R.compose(
-      normalizeToID,
-      R.prop(0)
-    )(userTransStatus));
-  }
-
-  if (!error) {
-    message.client.addMemberToRole(message.author, userRoles, function(err) {
-      var response = "";
+    var userRoles = [roles["Member"]];
+    var error = false;
   
-      if (err) {
-        response = "Sorry, there was an error, please message @celkam and let her know that I'm down."
-        console.error(err, message.content);
-      } else {
-        response = "Success! Your roles have been set."
-      }
+    var userGender = R.match(gender, message.content);
+    if (userGender.length === 0) {
+      error = true;
+      message.client.sendMessage(message.channel, "Must include one gender indentifier.");
+    } else if (userGender.length > 1) {
+      error = true;
+      message.client.sendMessage(message.channel, "Cannot have more than one gender identifier.");
+    } else {
+      // add gender role to roles list
+      userRoles.push(R.compose(
+        normalizeToID,
+        R.prop(0)
+      )(userGender));
+    }
   
-      message.client.sendMessage(message.channel, response);
-    });
+    var userGenRoles = R.match(genRoles, message.content);
+  
+    userRoles = userRoles.concat(R.map(normalizeToID, userGenRoles));
+  
+    var userTransStatus = R.match(transStatus, message.content);
+    if (userTransStatus.length > 1) {
+      error = true;
+      message.client.sendMessage(message.channel, "Can only have one transition identifier");
+    } else if (userTransStatus.length > 0) {
+      userRoles.push(R.compose(
+        normalizeToID,
+        R.prop(0)
+      )(userTransStatus));
+    }
+  
+    if (!error) {
+      message.client.addMemberToRole(message.author, userRoles, function(err) {
+        var response = "";
+    
+        if (err) {
+          response = "Sorry, there was an error, please message @celkam and let her know that I'm down."
+          console.error(err, message.content);
+        } else {
+          response = "Success! Your roles have been set."
+        }
+    
+        message.client.sendMessage(message.channel, response);
+      });
+    }
   }
       
 };
