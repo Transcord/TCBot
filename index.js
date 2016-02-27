@@ -21,7 +21,7 @@ var welcomeMessage = function(user){
   "Genders (At least 1 is required): male, female, nonbinary, genderfluid, questioning\n" +
   "Pronouns: he, she, they, xe\n" +
   "Sexuality: straight, gay, lesbian, bi, pan, demi, ace, poly\n" +
-  "Extras (Only 1; gives access to private room): mtf, ftm\n\n" +
+  "Extras (Only 1): mtf, ftm, ally\n\n" +
   "Examples:\n" +
   "!register male\n" +
   "!register nonbinary they xe\n" +
