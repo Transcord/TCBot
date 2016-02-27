@@ -9,7 +9,7 @@ var roles = require('../config/roles.js');
 // regexes for parsing command input
 var gender = /\smale|\sfemale|\sgenderfluid|\snonbinary|\squestioning/i
 var genRoles = /\sstraight|\sgay|\slesbian|\sbi|\span|\sace|\sdemi|\spoly|\squeer|\sshe|\she|\sthey|\sxe/ig
-var transStatus = /\smtf|\sftm/i
+var transStatus = /\smtf|\sftm|\sally/i
 
 var normalize = R.compose(R.toLower, R.trim);
 
@@ -23,7 +23,7 @@ var normalizeToID = R.compose(
 var register = function(message) {
   // message.client.sendMessage(message.channel, "I'm a bot! I'm working!");
   
-  if (message.client.memberHasRole(message.author, roles["member"]) {
+  if (message.client.memberHasRole(message.author, roles["member"])) {
     message.client.sendMessage(message.channel,
       "Please ask a mod reset your tags first."
     );
