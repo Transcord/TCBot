@@ -1,5 +1,5 @@
-// Strip command to remove roles 
-// format: !strip @user <role> <role>
+// Add command to add roles 
+// format: !add @user <role> <role>
 
 // Require Ramda. Always require Ramda.
 var R = require('ramda');
@@ -18,28 +18,27 @@ var normalizeToID = R.compose(
   normalize
 );
 
-var strip = function(message) {
-  // message.client.sendMessage(message.channel, "I'm a bot! I'm working!");
+var add = function(message) {
   
   if (!message.client.memberHasRole(message.author, roles["Staff"])) {
     message.client.sendMessage(message.channel,
-      "Only staff is allowed to strip."
+      "Only staff is allowed to add roles."
     );
   } else {
     var userRoles = [];
-    var memberToStrip = message.mentions[0];
+    var memberToAddRole = message.mentions[0];
     var error = false;
 
-    if(memberToStrip == undefined){
+    if(memberToAddRole == undefined){
       error = true;
-      message.client.sendMessage(message.channel, "Must specify a user to strip.");
+      message.client.sendMessage(message.channel, "Must specify a user to add roll too.");
     }
 
     var inputRoles = R.match(rolesList, message.content);
 
     if (inputRoles.length === 0) {
       error = true;
-      message.client.sendMessage(message.channel, "Must include a role to strip or user may already be naked(null).");
+      message.client.sendMessage(message.channel, "Must include a role to add to the user.");
     } else {
       // add gender role to roles list
       userRoles.push(R.compose(
@@ -49,14 +48,14 @@ var strip = function(message) {
     }
   
     if (!error) {
-      message.client.removeMemberFromRole(memberToStrip, userRoles, function(err) {
+      message.client.addMemberToRole(memberToAddRole, userRoles, function(err) {
         var response = "";
     
         if (err) {
           response = "Sorry, there was an error, please message @celkam or @ashelia and let either of them know that I'm down."
           console.error(err, message.content);
         } else {
-          response = "Success! Your roles have been set."
+          response = "Success! Your roles have been added."
         }
     
         message.client.sendMessage(message.channel, response);
@@ -66,4 +65,4 @@ var strip = function(message) {
       
 };
 
-module.exports = strip;
+module.exports = add;
