@@ -1,5 +1,5 @@
-// register command for users to add roles
-// format: !register <gender> <pronoun> <orientation> <mtf|ftm>
+// Strip command to remove roles 
+// format: !strip @user <role> <role>
 
 // Require Ramda. Always require Ramda.
 var R = require('ramda');
@@ -7,7 +7,7 @@ var R = require('ramda');
 var roles = require('../config/roles.js');
 
 // regexes for parsing command input
-var rolesList = /\smale|\sfemale|\sgenderfluid|\snonbinary|\squestioning|\sstraight|\sgay|\slesbian|\sbi|\span|\sace|\sdemi|\spoly|\squeer|\sshe|\she|\sthey|\sxe|\smtf|\sftm|\sally/i
+var rolesList = /\smale|\sfemale|\sgenderfluid|\snonbinary|\squestioning|\sstraight|\sgay|\slesbian|\sbi|\span|\sace|\sdemi|\spoly|\squeer|\sshe|\she|\sthey|\sxe|\smtf|\sftm|\sally/ig
 
 var normalize = R.compose(R.toLower, R.trim);
 
@@ -21,9 +21,9 @@ var normalizeToID = R.compose(
 var strip = function(message) {
   // message.client.sendMessage(message.channel, "I'm a bot! I'm working!");
   
-  if (message.client.memberHasRole(message.author, roles["Member"])) {
+  if (!message.client.memberHasRole(message.author, roles["Staff"])) {
     message.client.sendMessage(message.channel,
-      "Please ask a mod reset your tags first."
+      "Only staff is allowed to strip."
     );
   } else {
     var userRoles = [roles["Member"]];
@@ -49,7 +49,7 @@ var strip = function(message) {
     }
   
     if (!error) {
-      message.client.removeMemberFromRole(message.author, userRoles, function(err) {
+      message.client.removeMemberFromRole(memberToStrip, userRoles, function(err) {
         var response = "";
     
         if (err) {
