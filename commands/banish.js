@@ -1,3 +1,5 @@
+var roles = require('../config/roles.js');
+
 var banish = function(message){
     if (message.client.memberHasRole(message.author, roles["Member"])) {
         message.client.sendMessage(message.channel,
