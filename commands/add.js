@@ -7,7 +7,7 @@ var R = require('ramda');
 var roles = require('../config/roles.js');
 
 // regexes for parsing command input
-var rolesList = /\smale|\sfemale|\sgenderfluid|\snonbinary|\squestioning|\sstraight|\sgay|\slesbian|\sbi|\span|\sace|\sdemi|\spoly|\squeer|\sshe|\she|\sthey|\sxe|\smtf|\sftm|\sally/ig
+var rolesList = /\smale|\sfemale|\sgenderfluid|\snonbinary|\squestioning|\sstraight|\sgay|\slesbian|\sbi|\span|\sace|\sdemi|\spoly|\squeer|\sshe|\she|\sthey|\sxe|\smtf|\sftm|\sally|\sMember|\sSupport/ig
 
 var normalize = R.compose(R.toLower, R.trim);
 
