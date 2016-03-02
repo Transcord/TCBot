@@ -36,17 +36,7 @@ var strip = function(message) {
     }
 
     var inputRoles = R.match(rolesList, message.content);
-
-    if (inputRoles.length === 0) {
-      error = true;
-      message.client.sendMessage(message.channel, "Must include a role to strip or user may already be naked(null).");
-    } else {
-      // add gender role to roles list
-      userRoles.push(R.compose(
-        normalizeToID,
-        R.prop(0)
-      )(inputRoles));
-    }
+    userRoles = userRoles.concat(R.map(normalizeToID, inputRoles));
   
     if (!error) {
       message.client.removeMemberFromRole(memberToStrip, userRoles, function(err) {

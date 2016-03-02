@@ -35,18 +35,8 @@ var add = function(message) {
     }
 
     var inputRoles = R.match(rolesList, message.content);
+    userRoles = userRoles.concat(R.map(normalizeToID, inputRoles));
 
-    if (inputRoles.length === 0) {
-      error = true;
-      message.client.sendMessage(message.channel, "Must include a role to add to the user.");
-    } else {
-      // add gender role to roles list
-      userRoles.push(R.compose(
-        normalizeToID,
-        R.prop(0)
-      )(inputRoles));
-    }
-  
     if (!error) {
       message.client.addMemberToRole(memberToAddRole, userRoles, function(err) {
         var response = "";
