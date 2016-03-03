@@ -17,3 +17,5 @@ var voiceService = {
 	        }
 	}
 };
+
+module.exports = voiceService;
