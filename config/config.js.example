@@ -6,5 +6,6 @@ module.exports = {
     password: "PLACE YOUR BOT PASSWORD HERE"
   },
   modChannelName: "PLACE MOD CHANNEL NAME FOR MESSAGES HERE FOR MODCALL",
-  entryChannel: "ENTRY CHANNEL FOR SERVER"
+  entryChannel: "ENTRY CHANNEL FOR SERVER",
+  afkChannelId: "ID OF AFK CHANNEL FOR VOICE IGNORE MAKE NULL IF NO AFK"
 }
