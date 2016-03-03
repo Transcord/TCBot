@@ -6,6 +6,5 @@ module.exports = {
     password: "PLACE YOUR BOT PASSWORD HERE"
   },
   modChannelName: "PLACE MOD CHANNEL NAME FOR MESSAGES HERE FOR MODCALL",
-  entryChannel: "ENTRY CHANNEL FOR SERVER",
-  channelsToTrollIgnore: ["ARRAY OF CHANNEL NAMES", "TO IGNORE FOR TROLL COMMANDS"]
+  entryChannel: "ENTRY CHANNEL FOR SERVER"
 }
