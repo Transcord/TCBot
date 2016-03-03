@@ -6,3 +6,6 @@ data.sqlite
 
 # ignore filled in config file
 config/config.js
+
+#ignore media directory
+media/
