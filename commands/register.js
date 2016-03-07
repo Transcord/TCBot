@@ -61,6 +61,16 @@ var register = function(message) {
       )(userTransStatus));
     }
   
+    if(userRoles.indexOf(roles["male"]) > -1 && userRoles.indexOf(roles["mtf") > -1){
+        error = true;
+        message.client.sendMessage(message.channel, "Invalid selection: You can not be male and mtf");
+    }
+
+    if(userRoles.indexOf(roles["female"]) > -1 && userRoles.indexOf(roles["ftm") > -1){
+        error = true;
+        message.client.sendMessage(message.channel, "Invalid selection: You can not be female and ftm");
+    }
+
     if (!error) {
       message.client.addMemberToRole(message.author, userRoles, function(err) {
         var response = "";
