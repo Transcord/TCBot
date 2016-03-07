@@ -23,7 +23,7 @@ var normalizeToID = R.compose(
 var register = function(message) {
   // message.client.sendMessage(message.channel, "I'm a bot! I'm working!");
   
-  if (message.client.memberHasRole(message.author, roles["Member"])) {
+  if (message.client.memberHasRole(message.author, roles["Member"]) && !message.client.memberHasRole(message.author, roles["Staff"])) {	
     message.client.sendMessage(message.channel,
       "Please ask a mod reset your tags first."
     );
@@ -61,12 +61,12 @@ var register = function(message) {
       )(userTransStatus));
     }
   
-    if(userRoles.indexOf(roles["male"]) > -1 && userRoles.indexOf(roles["mtf") > -1){
+    if(userRoles.indexOf(roles["male"]) > -1 && userRoles.indexOf(roles["mtf"]) > -1){
         error = true;
         message.client.sendMessage(message.channel, "Invalid selection: You can not be male and mtf");
     }
 
-    if(userRoles.indexOf(roles["female"]) > -1 && userRoles.indexOf(roles["ftm") > -1){
+    if(userRoles.indexOf(roles["female"]) > -1 && userRoles.indexOf(roles["ftm"]) > -1){
         error = true;
         message.client.sendMessage(message.channel, "Invalid selection: You can not be female and ftm");
     }
