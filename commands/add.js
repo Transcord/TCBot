@@ -37,6 +37,11 @@ var add = function(message) {
     var inputRoles = R.match(rolesList, message.content);
     userRoles = userRoles.concat(R.map(normalizeToID, inputRoles));
 
+    if(userRoles.length == 0){
+        error = true;
+        message.client.sendMessage(message.channel, "No valid roles were selected for use. Please use only valid roles from the registration list.");
+    }	
+
     if (!error) {
       message.client.addMemberToRole(memberToAddRole, userRoles, function(err) {
         var response = "";
