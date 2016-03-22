@@ -34,7 +34,7 @@ var register = function(message) {
     var userGender = R.match(gender, message.content);
     if (userGender.length === 0) {
       error = true;
-      message.client.sendMessage(message.channel, "Must include one gender indentifier.");
+      message.client.sendMessage(message.channel, "Must include one gender identifier.");
     } else if (userGender.length > 1) {
       error = true;
       message.client.sendMessage(message.channel, "Cannot have more than one gender identifier.");
