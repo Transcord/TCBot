@@ -23,18 +23,23 @@ var nullify = function(message) {
     }
 
     if (!error) {
-	  message.client.removeMemberFromRole(memberToAddRole, theMemberRole);
       message.client.addMemberToRole(memberToAddRole, theNullRole, function(err) {
         var response = "";
-    
-        if (err) {
-          response = "Sorry, there was an error, please message @celkam or @ashelia and let either of them know that I'm down."
-          console.error(err, message.content);
-        } else {
-          response = "Success! Your user has been nullified."
-        }
-    
-        message.client.sendMessage(message.channel, response);
+        
+        if(err){
+			response = "Sorry, there was an error, please message @celkam or @ashelia and let either of them know that I'm down."
+			message.client.sendMessage(message.channel, response);
+		}else{
+			message.client.removeMemberFromRole(memberToAddRole, theMemberRole, function(err2) {
+				 if (err) {
+				  response = "Sorry, there was an error, please message @celkam or @ashelia and let either of them know that I'm down."
+				  console.error(err, message.content);
+				} else {
+				  response = "Success! Your user has been nullified."
+				}
+				message.client.sendMessage(message.channel, response);
+			});
+		}
       });
     }
   }
