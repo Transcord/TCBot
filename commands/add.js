@@ -1,14 +1,26 @@
 // Add command to add roles 
 // format: !add @user <role> <role>
 
-// Include RoleBlaster service!
-var roleBlaster = require('../services/roleBlaster.js');
 // Require Ramda. Always require Ramda.
 var R = require('ramda');
 
+var roles = require('../config/roles.js');
+
+// regexes for parsing command input
+var rolesList = /\smale|\sfemale|\sgenderfluid|\snonbinary|\squestioning|\sstraight|\sgay|\slesbian|\sbi|\span|\sace|\sdemi|\spoly|\squeer|\sshe|\she|\sthey|\sxe|\smtf|\sftm|\sally|\sMember|\sSupport/ig
+
+var normalize = R.compose(R.toLower, R.trim);
+
+var getRoleID = R.flip(R.prop)(roles);
+
+var normalizeToID = R.compose(
+  getRoleID,
+  normalize
+);
+
 var add = function(message) {
   
-  if (!message.client.memberHasRole(message.author, roleBlaster.roles["Staff"])) {
+  if (!message.client.memberHasRole(message.author, roles["Staff"])) {
     message.client.sendMessage(message.channel,
       "Only staff is allowed to add roles."
     );
@@ -22,7 +34,7 @@ var add = function(message) {
       message.client.sendMessage(message.channel, "Must specify a user to add roll too.");
     }
 
-    var inputRoles = R.match(roleBlaster.rolesList, message.content);
+    var inputRoles = R.match(rolesList, message.content);
     userRoles = userRoles.concat(R.map(normalizeToID, inputRoles));
 
     if(userRoles.length == 0){
