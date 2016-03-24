@@ -23,7 +23,7 @@ var denull = function(message) {
     }
 
     if (!error) {
-	  message.client.removeMemberFromRole(memberToAddRole, theMemberRole, function(err) {
+	  message.client.removeMemberFromRole(memberToAddRole, theNullRole, function(err) {
 		var response = "";
         
         if(err){
