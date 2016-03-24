@@ -4,6 +4,9 @@
 // Require Role Blaster Service! Cause awesome!
 var roleBlaster = require('../services/roleBlaster.js');
 
+// Require Ramda. Always require Ramda.
+var R = require('ramda');
+
 var register = function(message) {
   // message.client.sendMessage(message.channel, "I'm a bot! I'm working!");
   
@@ -15,7 +18,7 @@ var register = function(message) {
     var userRoles = [roleBlaser.roles["Member"]];
     var error = false;
   
-    var userGender = roleBlaser.R.match(roleBlaser.gender, message.content);
+    var userGender = R.match(roleBlaser.gender, message.content);
     if (userGender.length === 0) {
       error = true;
       message.client.sendMessage(message.channel, "Must include one gender indentifier.");
@@ -24,24 +27,24 @@ var register = function(message) {
       message.client.sendMessage(message.channel, "Cannot have more than one gender identifier.");
     } else {
       // add gender role to roles list
-      userRoles.push(roleBlaser.R.compose(
+      userRoles.push(R.compose(
         roleBlaster.normalizeToID,
-        roleBlaser.R.prop(0)
+        R.prop(0)
       )(userGender));
     }
   
-    var userGenRoles = roleBlaser.R.match(roleBlaser.genRoles, message.content);
+    var userGenRoles = R.match(roleBlaser.genRoles, message.content);
   
-    userRoles = userRoles.concat(roleBlaser.R.map(roleBlaster.normalizeToID, userGenRoles));
+    userRoles = userRoles.concat(R.map(roleBlaster.normalizeToID, userGenRoles));
   
-    var userTransStatus = roleBlaser.R.match(roleBlaser.transStatus, message.content);
+    var userTransStatus = R.match(roleBlaser.transStatus, message.content);
     if (userTransStatus.length > 1) {
       error = true;
       message.client.sendMessage(message.channel, "Can only have one transition identifier");
     } else if (userTransStatus.length > 0) {
-      userRoles.push(roleBlaser.R.compose(
+      userRoles.push(R.compose(
         roleBlaster.normalizeToID,
-        roleBlaser.R.prop(0)
+        R.prop(0)
       )(userTransStatus));
     }
   

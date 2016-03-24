@@ -3,6 +3,8 @@
 
 // Include RoleBlaster service!
 var roleBlaster = require('../services/roleBlaster.js');
+// Require Ramda. Always require Ramda.
+var R = require('ramda');
 
 var add = function(message) {
   
@@ -20,8 +22,8 @@ var add = function(message) {
       message.client.sendMessage(message.channel, "Must specify a user to add roll too.");
     }
 
-    var inputRoles = roleBlaster.R.match(roleBlaster.rolesList, message.content);
-    userRoles = userRoles.concat(roleBlaster.R.map(normalizeToID, inputRoles));
+    var inputRoles = R.match(roleBlaster.rolesList, message.content);
+    userRoles = userRoles.concat(R.map(normalizeToID, inputRoles));
 
     if(userRoles.length == 0){
         error = true;
