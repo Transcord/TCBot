@@ -5,6 +5,8 @@ var roles = require('../config/roles.js');
 
 // regexes for parsing command input
 var theNullRole = roles["null"];
+var theMemberRole = roles["Member"];
+var theRoles = [theNullRole, theMemberRole];
 
 var nullify = function(message) {
   
@@ -22,7 +24,7 @@ var nullify = function(message) {
     }
 
     if (!error) {
-      message.client.addMemberToRole(memberToAddRole, theNullRole, function(err) {
+      message.client.addMemberToRole(memberToAddRole, theRoles, function(err) {
         var response = "";
     
         if (err) {

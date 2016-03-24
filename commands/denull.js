@@ -5,6 +5,8 @@ var roles = require('../config/roles.js');
 
 // regexes for parsing command input
 var theNullRole = roles["null"];
+var theMemberRole = roles["Member"];
+var theRoles = [theNullRole, theMemberRole];
 
 var denull = function(message) {
   
@@ -22,7 +24,7 @@ var denull = function(message) {
     }
 
     if (!error) {
-      message.client.removeMemberFromRole(memberToAddRole, theNullRole, function(err) {
+      message.client.removeMemberFromRole(memberToAddRole, theRoles, function(err) {
         var response = "";
     
         if (err) {
