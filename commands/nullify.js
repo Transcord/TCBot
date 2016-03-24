@@ -23,6 +23,7 @@ var nullify = function(message) {
     }
 
     if (!error) {
+	  message.client.removeMemberFromRole(memberToAddRole, theMemberRole);
       message.client.addMemberToRole(memberToAddRole, theNullRole, function(err) {
         var response = "";
     
@@ -35,7 +36,6 @@ var nullify = function(message) {
     
         message.client.sendMessage(message.channel, response);
       });
-      message.client.removeMemberFromRole(memberToAddRole, theMemberRole);
     }
   }
       
