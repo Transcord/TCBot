@@ -1,37 +1,21 @@
 // register command for users to add roles
 // format: !register <gender> <pronoun> <orientation> <mtf|ftm>
 
-// Require Ramda. Always require Ramda.
-var R = require('ramda');
-
-var roles = require('../config/roles.js');
-
-// regexes for parsing command input
-var gender = /\smale|\sfemale|\sgenderfluid|\snonbinary|\squestioning/i
-var genRoles = /\sstraight|\sgay|\slesbian|\sbi|\span|\sace|\sdemi|\spoly|\squeer|\sshe|\she|\sthey|\sxe/ig
-var transStatus = /\smtf|\sftm|\sally/i
-
-var normalize = R.compose(R.toLower, R.trim);
-
-var getRoleID = R.flip(R.prop)(roles);
-
-var normalizeToID = R.compose(
-  getRoleID,
-  normalize
-);
+// Require Role Blaster Service! Cause awesome!
+var roleBlaster = require('../services/roleBlaster.js');
 
 var register = function(message) {
   // message.client.sendMessage(message.channel, "I'm a bot! I'm working!");
   
-  if (message.client.memberHasRole(message.author, roles["Member"]) && !message.client.memberHasRole(message.author, roles["Staff"])) {	
+  if (message.client.memberHasRole(message.author, roleBlaser.roles["Member"]) && !message.client.memberHasRole(message.author, roleBlaser.roles["Staff"])) {	
     message.client.sendMessage(message.channel,
       "Please ask a mod reset your tags first."
     );
   } else {
-    var userRoles = [roles["Member"]];
+    var userRoles = [roleBlaser.roles["Member"]];
     var error = false;
   
-    var userGender = R.match(gender, message.content);
+    var userGender = roleBlaser.R.match(roleBlaser.gender, message.content);
     if (userGender.length === 0) {
       error = true;
       message.client.sendMessage(message.channel, "Must include one gender indentifier.");
@@ -40,33 +24,33 @@ var register = function(message) {
       message.client.sendMessage(message.channel, "Cannot have more than one gender identifier.");
     } else {
       // add gender role to roles list
-      userRoles.push(R.compose(
-        normalizeToID,
-        R.prop(0)
+      userRoles.push(roleBlaser.R.compose(
+        roleBlaster.normalizeToID,
+        roleBlaser.R.prop(0)
       )(userGender));
     }
   
-    var userGenRoles = R.match(genRoles, message.content);
+    var userGenRoles = roleBlaser.R.match(roleBlaser.genRoles, message.content);
   
-    userRoles = userRoles.concat(R.map(normalizeToID, userGenRoles));
+    userRoles = userRoles.concat(roleBlaser.R.map(roleBlaster.normalizeToID, userGenRoles));
   
-    var userTransStatus = R.match(transStatus, message.content);
+    var userTransStatus = roleBlaser.R.match(roleBlaser.transStatus, message.content);
     if (userTransStatus.length > 1) {
       error = true;
       message.client.sendMessage(message.channel, "Can only have one transition identifier");
     } else if (userTransStatus.length > 0) {
-      userRoles.push(R.compose(
-        normalizeToID,
-        R.prop(0)
+      userRoles.push(roleBlaser.R.compose(
+        roleBlaster.normalizeToID,
+        roleBlaser.R.prop(0)
       )(userTransStatus));
     }
   
-    if(userRoles.indexOf(roles["male"]) > -1 && userRoles.indexOf(roles["mtf"]) > -1){
+    if(userRoles.indexOf(roleBlaser.roles["male"]) > -1 && userRoles.indexOf(roleBlaser.roles["mtf"]) > -1){
         error = true;
         message.client.sendMessage(message.channel, "Invalid selection: You can not be male and mtf");
     }
 
-    if(userRoles.indexOf(roles["female"]) > -1 && userRoles.indexOf(roles["ftm"]) > -1){
+    if(userRoles.indexOf(roleBlaser.roles["female"]) > -1 && userRoles.indexOf(roleBlaser.roles["ftm"]) > -1){
         error = true;
         message.client.sendMessage(message.channel, "Invalid selection: You can not be female and ftm");
     }
