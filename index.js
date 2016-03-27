@@ -29,11 +29,6 @@ var welcomeMessage = function(user){
   "For any issues or tags not mentioned here, please user the !modcall command in #entry\n";
 };
 
-//channel message to send to entry channel on new user
-var entryChannelMessage = function(user) {
-  return "Welcome " + user.mention() + " to Transcord! Please check your private messages for how to register.";
-};
-
 var messageHandler = function(commands) {
   return function(message) {
     var command = R.match(/^!(\w+)/, message.content);
@@ -48,8 +43,7 @@ bot.on("message", messageHandler(commandList));
 bot.on("serverNewMember", function(server, user) {
   if (server.id === servers.generalId) {
     var entryChannel = server.channels.get("name", config.entryChannel);
-    bot.sendMessage(entryChannel, entryChannelMessage(user)); 
-    bot.sendMessage(user, welcomeMessage(user));
+    bot.sendMessage(entryChannel, welcomeMessage(user)); 
   }
 });
 
