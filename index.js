@@ -16,7 +16,7 @@ var bot = new Discord.Client()
 
 // server welcome message
 var welcomeMessage = function(user){
-  return "Welcome " + user.name + " to Transcord!\n\n" +
+  return "Welcome " + user.mention() + " to Transcord!\n\n" +
   "To get started, please use the !register command with the following options:\n" +
   "Genders (At least 1 is required): male, female, nonbinary, genderfluid, questioning\n" +
   "Pronouns: he, she, they, xe\n" +
