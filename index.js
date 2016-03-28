@@ -26,7 +26,7 @@ var welcomeMessage = function(user){
   "!register male\n" +
   "!register nonbinary they xe\n" +
   "!register female pan poly mtf\n\n" +
-  "For any issues or tags not mentioned here, please user the !modcall command in #entry\n";
+  "For any issues or tags not mentioned here, please use the !modcall command in #entry\n";
 };
 
 var messageHandler = function(commands) {
