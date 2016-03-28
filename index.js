@@ -45,7 +45,7 @@ bot.on("serverNewMember", function(server, user) {
     var entryChannel = server.channels.get("name", config.entryChannel);
     setTimeout(function() {
       bot.sendMessage(entryChannel, welcomeMessage(user)); 
-    }, 5000)
+    }, 5000);
   }
 });
 
