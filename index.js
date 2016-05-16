@@ -20,7 +20,7 @@ var welcomeMessage = function(user){
   "To get started, please use the !register command with the following options:\n" +
   "Genders (At least 1 is required): male, female, nonbinary, genderfluid, questioning\n" +
   "Pronouns: he, she, they, xe\n" +
-  "Sexuality: straight, gay, lesbian, bi, pan, demi, ace, poly\n" +
+  "Sexuality: straight, gay, lesbian, bi, pan, demi, ace, poly, queer\n" +
   "Extras (Only 1): mtf, ftm, ally\n\n" +
   "Examples:\n" +
   "!register male\n" +
