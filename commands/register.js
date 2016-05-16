@@ -79,7 +79,7 @@ var register = function(message) {
           response = "Sorry, there was an error, please message @celkam and let her know that I'm down."
           console.error(err, message.content);
         } else {
-          response = "Success! Your roles have been set."
+          response = "Success! Your roles have been set. Welcome and check out the rules in #transcord-info"
         }
     
         message.client.sendMessage(message.channel, response);
