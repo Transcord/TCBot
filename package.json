@@ -9,7 +9,7 @@
   "author": "Cassandra Cruz <celkamada@gmail.com> (http://lambdatastic.github.io)",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^6.0.0",
+    "discord.js": "^7.0.0",
     "ramda": "^0.19.1"
   }
 }
