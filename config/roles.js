@@ -1,6 +1,7 @@
 // config that has all role IDs needed
 
 var roles = {
+  'Admin': '131501314147352577' ,
   'Member': '131501511195885568' ,
   'Staff': '146749221737988097' ,
   'Mod': '146748938303569921' ,
