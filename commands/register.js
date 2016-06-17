@@ -7,7 +7,7 @@ var R = require('ramda');
 var roles = require('../config/roles.js');
 
 // regexes for parsing command input
-var gender = /\smale|\sfemale|\sgenderfluid|\snonbinary|\squestioning/i
+var gender = /\smale|\sfemale|\sgenderfluid|\sgenderqueer|\sagender|\sintergender|\snonbinary|\squestioning/i
 var genRoles = /\sstraight|\sgay|\slesbian|\sbi|\span|\sace|\sdemi|\spoly|\squeer|\sshe|\she|\sthey|\sxe/ig
 var transStatus = /\smtf|\sftm|\sally/i
 
