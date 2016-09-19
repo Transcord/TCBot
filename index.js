@@ -17,15 +17,21 @@ var bot = new Discord.Client()
 // server welcome message
 var welcomeMessage = function(user){
   return "Welcome " + user.mention() + " to Transcord!\n\n" +
-  "To get started, please use the !register command with the following options:\n" +
-  "Genders (At least 1 is required): male, female, nonbinary, genderfluid, genderqueer, intergender, agender, questioning\n" +
+  
+  "To get started, please use ``!register gender pronouns sexuality extras`` with the following options:\n" +
+  "Genders (required): male, female, nonbinary, genderfluid, genderqueer, intergender, agender, questioning\n" +
   "Pronouns: he, she, they, xe\n" +
   "Sexuality: straight, gay, lesbian, bi, pan, demi, ace, poly, queer\n" +
-  "Extras (Only 1): mtf, ftm, ally\n\n" +
+  "Extras (Only 1): mtf, ftm, ally\n" +
+  "Only gender is required. Private rooms available for mtf, ftm, and all nonbinary genders.\n\n"+
+  
   "Examples:\n" +
-  "!register male\n" +
-  "!register nonbinary they xe\n" +
-  "!register female pan poly mtf\n\n" +
+  "!register female she mtf ace\n" +
+  "!register male he ftm\n" +
+  "!register genderfluid they she\n" +
+  "!register nonbinary he ftm pan poly\n" +
+  "!register questioning mtf they\n\n" +
+
   "For any issues or tags not mentioned here, please use the !callmod command in #entry\n";
 };
 
