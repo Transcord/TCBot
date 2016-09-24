@@ -9,7 +9,7 @@ var hug = function(message) {
     
     var usersToHug = [];
     for(var user in message.mentions){
-        if (!message.client.memberHasRole(message.mentions[user], roles["donothug"])) {
+        if (!message.client.memberHasRole(message.mentions[user], doNotHugRole)) {
             usersToHug.push(message.mentions[user]);
         }
     }
@@ -18,7 +18,7 @@ var hug = function(message) {
 	if(mention == undefined){
 		var onlineUsers = message.client.users.getAll("status", "online");
         var userToHug = onlineUsers[Math.floor(Math.random()*onlineUsers.length)];
-        if (!message.client.memberHasRole(userToHug, roles["donothug"])) {
+        if (!message.client.memberHasRole(userToHug, doNotHugRole)) {
             messageToSend += onlineUsers[Math.floor(Math.random()*onlineUsers.length)];
         }
 	}
