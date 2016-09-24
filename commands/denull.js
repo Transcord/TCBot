@@ -27,18 +27,8 @@ var denull = function(message) {
 		var response = "";
         
         if(err){
-			response = "Sorry, there was an error, please message @celkam or @ashelia and let either of them know that I'm down."
+			response = "Sorry, there was an error, please message @ashelia and let her know that I'm down."
 			message.client.sendMessage(message.channel, response);
-		}else{
-			message.client.addMemberToRole(memberToAddRole, theMemberRole, function(err2) {
-				 if (err) {
-				  response = "Sorry, there was an error, please message @celkam or @ashelia and let either of them know that I'm down."
-				  console.error(err, message.content);
-				} else {
-				  response = "Success! Your user has been denullified."
-				}
-				message.client.sendMessage(message.channel, response);
-			});
 		}
 	  });
 	  
