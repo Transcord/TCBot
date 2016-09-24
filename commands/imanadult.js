@@ -2,7 +2,7 @@
 
 var imanadult = function(message) {
   
-    var createdAtTimestamp = message.author.createdAt;
+    var createdAtTimestamp = Math.round(message.author.createdAt.getTime() / 1000);
     var ts = Math.round(new Date().getTime() / 1000);
     var tsYesterday = ts - (24 * 3600);
     
