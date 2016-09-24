@@ -22,13 +22,16 @@ var ban = function(message) {
       message.client.banMember(memberToBan, message.channel, 1, function(err) {
         var response = "";
 
+        response = "The banhammer has been struck upon the head of " + memberToBan.username + ".";
         if (err) {
           response = "Sorry, there was an error trying to ban. Please message @Ashelia and let her know that I'm down."
           console.error(err, message.content);
-        } else {
-          response = "The banhammer has been struck upon the head of " + memberToBan.username + ".";
-        }
-    
+        } 
+        var config = require("../config/config.js"),
+        serverConfig = require("../config/server.js"),
+        modServer = message.client.servers.get("id", serverConfig.modId),
+        channel = modServer.channels.get("name", config.banWarningLogChannel);
+          
         message.client.sendMessage(message.channel, response);
       });
     }

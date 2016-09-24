@@ -6,5 +6,6 @@ module.exports = {
     password: "PLACE YOUR BOT PASSWORD HERE"
   },
   modChannelName: "PLACE MOD CHANNEL NAME FOR MESSAGES HERE FOR MODCALL",
+  banWarningLogChannel: "PLACE MOD CHANNEL OF BANNING",
   entryChannel: "ENTRY CHANNEL FOR SERVER"
 }
