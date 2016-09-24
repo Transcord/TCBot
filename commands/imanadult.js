@@ -8,6 +8,8 @@ var imanadult = function(message) {
     
     if(tsYesterday >= createdAtTimestamp){
         message.client.sendMessage(message.author, 'https://discord.gg/0wDu0KUT8wxt3QlW');
+    } else{
+        message.client.sendMessage(message.author, 'You have not been a member for 24 hours yet, please try again later.');
     }
 };
 
